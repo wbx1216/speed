@@ -1,5 +1,5 @@
 [{
-	"title": "游戏测速",
+	"title": "游戏PK",
 	"cate":"game",
 	"list": [{
 			"name": "王者荣耀",
@@ -100,7 +100,7 @@
 	]
 },
 {
-	"title":"直播测速",
+	"title":"直播PK",
 	"cate":"zhibo",
 	"list":[{"name": "虎牙直播", "url": "https://www.huya.com","ping":"-","type":""},
     {"name": "斗鱼直播", "url": "https://www.douyu.com","ping":"-","type":""},
@@ -116,101 +116,7 @@
     {"name": "美拍", "url": "http://www.meipai.com","ping":"-","type":""}]
 },
 {
-	"title":"电商测速",
-	"cate":"shopping",
-	"list":[
-    {"name": "美团", "url": "https://bj.meituan.com","ping":"-","type":""},
-    {"name": "饿了吗", "url": "https://www.ele.me","ping":"-","type":""},
-    {"name": "小红书", "url": "https://www.xiaohongshu.com","ping":"-","type":""},
-    {"name": "淘宝", "url": "https://www.taobao.com/","ping":"-","type":""},
-    {"name": "天猫", "url": "https://www.tmall.com/","ping":"-","type":""},
-    {"name": "京东", "url": "https://www.jd.com/","ping":"-","type":""},
-    {"name": "聚美", "url": "http://sh.jumei.com/","ping":"-","type":""},
-    {"name": "国美", "url": "https://www.gome.com.cn/","ping":"-","type":""},
-    {"name": "苏宁", "url": "https://www.suning.com/","ping":"-","type":""},
-    {"name": "阿里巴巴", "url": "https://re.1688.com/","ping":"-","type":""},
-    {"name": "亚马逊", "url": "https://www.amazon.cn/","ping":"-","type":""},
-    {"name": "拼多多", "url": "https://www.pinduoduo.com/","ping":"-","type":""},
-    {"name": "瓜子", "url": "https://www.guazi.com/","ping":"-","type":""},
-    {"name": "优信", "url": "https://www.xin.com/hangzhou/","ping":"-","type":""},
-    {"name": "人人车", "url": "https://www.renrenche.com/?fr=bd_pz&tg_aid=10055728","ping":"-","type":""},
-    {"name": "盒马", "url": "https://www.freshhema.com/","ping":"-","type":""},
-    {"name": "屈臣氏", "url": "http://www.watsons.com.cn/#/","ping":"-","type":""},
-    {"name": "唯品会", "url": "https://www.vip.com/?wxsdk=1","ping":"-","type":""},
-    {"name": "聚划算", "url": "https://ju.taobao.com/","ping":"-","type":""},
-    {"name": "蘑菇街", "url": "https://www.mogu.com/","ping":"-","type":""},
-    {"name": "转转", "url": "http://www.zhuanzhuan.com/","ping":"-","type":""},
-    {"name": "闲鱼", "url": "https://2.taobao.com/","ping":"-","type":""},
-    {"name": "每日优鲜", "url": "https://www.missfresh.cn/","ping":"-","type":""},
-    {"name": "小米有品", "url": "https://www.xiaomiyoupin.com/","ping":"-","type":""},
-    {"name": "1号店", "url": "https://www.yhd.com/","ping":"-","type":""},
-    {"name": "网易严选", "url": "http://you.163.com/?from=hd403","ping":"-","type":""}
-]
-},
-{
-	"title":"购票测速",
-	"cate":"goupiao",
-	"list":[
-    {"name": "去哪儿", "url": "https://www.qunar.com/","ping":"-","type":""},
-    {"name": "携程", "url": "https://www.ctrip.com/","ping":"-","type":""},
-    {"name": "智行", "url": "http://www.suanya.cn/","ping":"-","type":""},
-    {"name": "铁路12306", "url": "https://www.12306.cn/index/","ping":"-","type":""},
-    {"name": "淘票票", "url": "https://dianying.taobao.com/","ping":"-","type":""},
-    {"name": "大麦", "url": "https://www.damai.cn/","ping":"-","type":""},
-    {"name": "票牛", "url": "http://www.piaoniu.com/","ping":"-","type":""},
-    {"name": "铁友火车票", "url": "http://www.tieyou.com/","ping":"-","type":""},
-    {"name": "飞猪", "url": "https://www.fliggy.com/","ping":"-","type":""},
-    {"name": "艺龙酒店", "url": "http://www.elong.com/","ping":"-","type":""},
-    {"name": "途牛", "url": "https://www.tuniu.com/","ping":"-","type":""},
-    {"name": "同程旅游", "url": "https://www.ly.com/","ping":"-","type":""},
-    {"name": "驴妈妈", "url": "http://www.lvmama.com/","ping":"-","type":""},
-    {"name": "马蜂窝", "url": "http://www.mafengwo.cn/","ping":"-","type":""}]
-},
-{
-	"title":"资讯测速",
-	"cate":"news",
-	"list":[
-    {"name": "今日头条", "url": "https://www.toutiao.com/","ping":"-","type":""},
-    {"name": "东方头条", "url": "http://www.tt.cn/","ping":"-","type":""},
-    {"name": "惠头条", "url": "http://www.cashtoutiao.com/","ping":"-","type":""},
-    {"name": "天天快报", "url": "http://kuaibao.qq.com/","ping":"-","type":""},
-    {"name": "腾讯新闻", "url": "https://news.qq.com/","ping":"-","type":""},
-    {"name": "网易新闻", "url": "https://news.163.com/","ping":"-","type":""},
-    {"name": "凤凰新闻", "url": "https://news.ifeng.com/","ping":"-","type":""},
-    {"name": "搜狐资讯", "url": "http://news.sohu.com/","ping":"-","type":""},
-    {"name": "人民日报", "url": "http://www.people.com.cn/","ping":"-","type":""},
-    {"name": "彭拜新闻", "url": "https://www.thepaper.cn/","ping":"-","type":""},
-    {"name": "新浪新闻", "url": "https://news.sina.com.cn/","ping":"-","type":""},
-    {"name": "央视新闻", "url": "http://news.cctv.com/","ping":"-","type":""},
-    {"name": "军事头条", "url": "https://mil.eastday.com/","ping":"-","type":""},
-    {"name": "百家号", "url": "https://baijiahao.baidu.com/","ping":"-","type":""},
-    {"name": "汽车之家", "url": "https://www.autohome.com.cn/hangzhou/","ping":"-","type":""},
-    {"name": "中青看点", "url": "http://kandian.youth.cn/","ping":"-","type":""},
-    {"name": "猎云网", "url": "https://www.lieyunwang.com/","ping":"-","type":""},
-    {"name": "虎嗅", "url": "https://www.huxiu.com/","ping":"-","type":""},
-    {"name": "中关村在线", "url": "http://www.zol.com.cn/","ping":"-","type":""},
-    {"name": "新华社", "url": "http://www.xinhuanet.com/","ping":"-","type":""},
-    {"name": "知乎日报", "url": "http://daily.zhihu.com/","ping":"-","type":""},
-    {"name": "IT之家", "url": "https://www.ithome.com/","ping":"-","type":""},
-    {"name": "36氪", "url": "https://36kr.com/","ping":"-","type":""},
-    {"name": "ZAKER新闻", "url": "http://www.myzaker.com/","ping":"-","type":""}
-]
-},
-{
-	"title":"搜索测速",
-	"cate":"search",
-	"list":[
-    {"name": "百度", "url": "https://www.baidu.com/","ping":"-","type":""},
-    {"name": "360搜索", "url": "https://www.so.com/","ping":"-","type":""},
-    {"name": "必应", "url": "http://cn.bing.com/","ping":"-","type":""},
-    {"name": "搜狗搜索", "url": "https://www.sogou.com/","ping":"-","type":""},
-    {"name": "神马搜索", "url": "https://m.sm.cn/","ping":"-","type":""},
-    {"name": "YAhoo", "url": "https://www.yahoo.com/","ping":"-","type":""},
-    {"name": "Google", "url": "https://www.google.cn/","ping":"-","type":""}
-] 	
-},
-{
-	"title":"视频测速",
+	"title":"视频PK",
 	"cate":"video",
 	"list":[
     {"name": "爱奇艺", "url": "https://www.iqiyi.com/","ping":"-","type":""},
@@ -231,7 +137,7 @@
 ]
 },
 {
-	"title":"抢红包测速",
+	"title":"抢红包PK",
 	"cate":"hongbao",
 	"list":[
     {"name": "微信", "url": "https://weixin.qq.com/","ping":"-","type":""},

@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<div v-show="!show">
+		<!-- <div v-show="!show">
 			<img src="@/assets/menu.png" class="menu" @click="show=true">
 		</div>
 		<div v-show="show" class="cover">
@@ -16,12 +16,8 @@
 				<div>工具箱</div>
 				<img src="@/assets/arrow.png" class="arrow">
 			</div>
-			<a class="item" :href="ad.url">
-				<img :src="ad.icon" class="icon">
-				<div>{{ad.name}}</div>
-				<img src="@/assets/arrow.png" class="arrow">
-			</a>
-		</div>
+	 
+		</div> -->
 	</div>
 </template>
 
@@ -34,19 +30,19 @@
 				ad:""
 			}
 		},
-		mounted() {
-			this.$axios.get("../../doc/getAdv.htm?appId=17&posId=119").then(res => {
-				let data = res.data.data
-				let random=""
-				if(sessionStorage.random){
-					random=sessionStorage.random
-				}else{
-					random=Math.floor((Math.random() * data.length))
-					sessionStorage.random=random
-				} 
-				this.ad = data[random] 
-			}) 
-		},
+		// mounted() {
+		// 	this.$axios.get("../../doc/getAdv.htm?appId=17&posId=119").then(res => {
+		// 		let data = res.data.data
+		// 		let random=""
+		// 		if(sessionStorage.random){
+		// 			random=sessionStorage.random
+		// 		}else{
+		// 			random=Math.floor((Math.random() * data.length))
+		// 			sessionStorage.random=random
+		// 		} 
+		// 		this.ad = data[random] 
+		// 	}) 
+		// },
 		 methods:{
 			 nav(url){
 				 console.log(this.$route.path)

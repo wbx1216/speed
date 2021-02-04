@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div  >
 		<topNav></topNav>
 		<div class="title">
 			<img src="../assets/arrow.png" @click="back">
@@ -8,8 +8,8 @@
 		<div class="nav">
 			<div class="item" v-for="(item,index) in nav" :key="index" :class="a==index?'selected':''" @click="a=index">{{item}}</div>
 		</div>
-		<div v-show="a==0">
-			<img src="../assets/tool_icon1.png" class="icon">
+		<div v-show="a==0" style="background: #040412;">
+			<img src="../assets/tool_icon0.png" class="icon">
 			<div style="font-size: .5rem;	text-align: center;" v-if="!result1.ping">例：www.baidu.com</div>
 			<div style="font-size: .306rem;	text-align: center;margin:0.416rem 0" v-if="!result1.ping">请输入您想测速的网址</div>
 			<div v-if="result1.ping" style="line-height: 1.222rem;font-size: .5rem;text-align: center;margin:0.416rem 0px">
@@ -25,7 +25,7 @@
 			<input v-model="url" class="input" placeholder="www.baidu.com">
 			<div class="button" @click="test()" :class="url?'active':''">PING</div>
 		</div>
-		<div v-show="a==1">
+		<div v-show="a==1" style="background: #040412;" >
 			<img src="../assets/tool_icon1.png" class="icon">
 			<div style="font-size: .5rem;	text-align: center;" v-if="!result2.ping">例：192.168.1.1</div>
 			<div style="font-size: .306rem;	text-align: center;margin:0.416rem 0" v-if="!result2.ping">请输入您想测速的IP</div>
@@ -229,7 +229,7 @@
 		border: none;
 		color: rgba(255, 255, 255, .3);
 		font-size: 0.416rem;
-		margin: .861rem auto;
+		margin: .861rem auto 0px auto; 
 		display: block;
 		border-radius: 5px;
 

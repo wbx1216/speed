@@ -2,12 +2,16 @@
 	<div class="nav">
 		<div v-for="(item,index) in list" :key="index" class="item" :class="$route.path==item.url?'selected':''" @click="select(index)">
 			<img :src="$route.path==item.url?require('@/assets/nav_icon'+index+'_1.png'):require('@/assets/nav_icon'+index+'_0.png')">
-			<div>{{item.name}}</div>
+			<div style="opacity: 0.6;">{{item.name}}</div>
 		</div>
-		<a class="item" :href="ad.url">
+		<a class="item" v-if="ad" :href="ad.url"> 
 			<img :src="ad.icon">
 			<div>{{ad.name}}</div>
 		</a>
+		<!-- <a class="item"  href="http://www.playwonderful.cn/?cid=994121">
+			<img  src="@/assets/nav_icon4_0.png">
+			<div>资讯</div>
+		</a> -->
 	</div>
 </template>
 
@@ -20,29 +24,26 @@
 					name: "测速",
 					url: "/"
 				}, {
-					name: "记录",
+					name: "历史",
 					url: "/record"
 				}, {
 					name: "工具",
 					url: "/tool"
-				}],
-				ad: "",
-				nav: 0
-			}
-		},
-		mounted() {  
-			this.$axios.get("../../doc/getAdv.htm?appId=17&posId=119").then(res => {
-				let data = res.data.data
-				let random=""
-				if(sessionStorage.random){
-					random=sessionStorage.random
-				}else{
-					random=Math.floor((Math.random() * data.length))
-					sessionStorage.random=random
-				} 
-				this.ad = data[random]
+				}], 
+				nav: 0,
+				ad:""
 				
-			}) 
+			}
+		},  
+		created(){
+			let that=this
+			// this.$axios.get("http://www.speedtesting.cn/doc/getAdv.htm?appId=30&posId=253").then(res => {
+			// 	let data = res.data.data 
+			// 	if(data){
+			// 		console.log(data)
+			// 		that.ad=data[0]
+			// 	}
+			// })
 		},
 		methods: {
 			select(index) {
@@ -50,6 +51,19 @@
 				let url = this.list[index].url
 				this.$router.push(url);
 			},
+			randomNum(minNum, maxNum) {
+				switch (arguments.length) {
+					case 1:
+						return parseInt(Math.random() * minNum + 1, 10);
+						break;
+					case 2:
+						return parseInt(Math.random() * (maxNum - minNum + 1) + minNum, 10);
+						break;
+					default:
+						return 0;
+						break;
+				}
+			}
 		}
 	}
 </script>
@@ -67,10 +81,9 @@
 		padding: 0.1rem 0px;
 		z-index: 999;
 
-		.item {
-			width: 25%;
+		.item { 
 			text-align: center;
-
+			flex:1;
 			img {
 				height: 0.625rem;
 				display: block;
@@ -82,7 +95,7 @@
 		}
 
 		.selected {
-			color: #00dbff;
+			color: #60d58b;
 		}
 	}
 

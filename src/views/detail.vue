@@ -1,109 +1,118 @@
 <template>
-	<div style="width: 92%;margin:0 auto;">
-		<div class="head">
+	<div style="width: 100%;background-color: #040412;">
+		<div class="head" style="margin-left:5%;width: 95%;">
 			<img src="../assets/arrow.png" @click="back">
-			网络测速
+			测速结果
 		</div>
-		<div style="display: flex;justify-content: space-between;font-size: 0.389rem;">
-			<div>{{data.date}} {{data.time}}</div>
-			<div>使用流量&nbsp;:&nbsp;{{data.downSum}}M</div>
-		</div>
-		<div class="location">
-			<div class="item" style="display: flex;align-items: center;">
-				<img src="../assets/location2.png">
-				<div style="margin-left: 5px;">
-					<div style="font-size: 0.306rem;margin-left: 0.2rem;"><span style="margin-right: 10px;">经度：{{data.jd}}</span>纬度：{{data.wd}}</div>
-					<div style="font-size: 0.306rem;margin-left: 0.2rem;">IP&nbsp;:&nbsp;{{data.ip}}</div>
+		<div style="width: 100%;height: 1px;background: rgba(255,255,255,0.1);"></div>
+		<div style="width: 95%;margin:0 auto">
+			<div style="display: flex;justify-content: space-between;font-size: 0.389rem;margin-top: 5px;opacity: 0.8;">
+				<div>{{data.date}} {{data.time}}</div>
+				<div class="item" style="display: flex;align-items: center;"><img src="../assets/location.png" style="width: 15px;display: block;margin-right: 2px;">
+					{{data.address}}</div>
+				</dv>
+			</div>
+			<div style="font-size: 15px;opacity: 0.8;text-align: center;margin:25px 0px;">本次测速结果超越全国移动设备<span style="margin-left: 5px;color:#09c269;font-size: 21px;">{{data.pet}}%</span></div>
+			<div class="block">
+				<div style="display: flex;width: 90%;font-size: 10px;color:rgba(255,255,255,0.3);margin:0px auto 10px auto;">
+					<div style="display: flex;justify-content:center;align-items: center;flex: 1;">
+						<img src="../assets/down2.png" style="display: block;width: 12px;">下载
+					</div>
+					<div style="display: flex;justify-content:center;align-items: center;flex: 1;">
+						<img src="../assets/up2.png" style="display: block;width: 12px;"> 上传
+					</div>
 				</div>
+				<div class="item" style="width: 90%;display: flex;">
+					<div style="display: flex;flex:1;justify-content:center;align-items: baseline;">
+						<div style="color:#09c269;font-size: 24px;font-weight: bold;">{{data.down}}</div>
+						<div style="font-size: 10px;opacity: .3;">Mbps</div>
+					</div>
+					<div style="display: flex;align-items: baseline;flex:1;justify-content:center">
+						<div style="color:#09c269;font-size: 24px;font-weight: bold;">{{data.up}}</div>
+						<div style="font-size: 10px;opacity: .3;">Mbps</div>
+					</div>
 
-			</div>
-			<div class="item">
-				<img src="@/assets/jiedian.png">
-				<div style="font-size: 0.306rem;margin-left: 0.2rem;">云测节点</div>
-			</div>
-		</div>
-		<div class="block">
-			<div class="item">
-				<div>
-					<div style="color:#69e3c2;font-size: 0.677rem;font-weight: bold;">{{data.down}}</div>
-					<div style="font-size: 0.278rem;opacity: .3;">下载/Mbps</div>
+					<div class="line" style="left: 50%;"></div>
 				</div>
-				<div>
-					<div style="color:#00dbff;font-size: 0.677rem;font-weight: bold;">{{data.up}}</div>
-					<div style="font-size: 0.278rem;opacity: .3;">上传/Mbps</div>
-				</div>
-			</div>
-			<div class="item" style="width:80%;margin-top:0.556rem">
-				<div>
-					<div style="font-size: 0.677rem;font-weight: bold;">{{data.ping}}</div>
-					<div style="font-size: 0.278rem;opacity: .3;">PING/ms</div>
-				</div>
-				<div>
-					<div style="font-size: 0.677rem;font-weight: bold;">{{data.doudong}}</div>
-					<div style="font-size: 0.278rem;opacity: .3;">抖动/ms</div>
-				</div>
-				<div>
-					<div style="font-size: 0.677rem;font-weight: bold;">{{data.lost}}</div>
-					<div style="font-size: 0.278rem;opacity: .3;">丢包/%</div>
-				</div>
-				<div class="line"></div>
-				<div class="line" style="left: 70%;"></div>
-			</div>
-		</div>
-		<div style="font-size: 0.416rem;opacity: .5;text-align: center;">您的网速相当于{{level}}宽带</div>
-		<a :href="ad.url" style="display: block;color:#00dbff;font-size: 0.416rem;opacity: .5;text-align: center;margin:0.4rem auto;">{{ad.desc}}</a>
-		<div class="list">
-			<div class="item">
-				<div style="display: flex;align-items: center;width:2.5rem">
-					<img src="../assets/cesu_icon0.png" class="icon">
-					<div>大型游戏</div>
-				</div>
-				<div class="loading">
-					<div class="inLoading" :style="{width:downLoading+'%'}"></div>
-				</div>
-				<div style="display: flex;align-items: center;">
-					<div>{{game}}</div>
-					<img src="../assets/arrow.png" class="arrow">
+				<div class="item" style="width:90%;margin-top:0.556rem;font-size: 12px;display: flex;justify-content: space-between;">
+					<div style="display: flex;align-items: center;flex:1;justify-content:center">
+						<div style="opacity: .3;">PING</div>
+						<div style="margin:0px 4px">{{data.ping}}</div>
+						<div style="opacity: .3;">ms</div>
+					</div>
+					<div style="display: flex;align-items: center;flex:1;justify-content:center">
+						<div style="opacity: .3;">抖动</div>
+						<div style="margin:0px 4px">{{data.ping}}</div>
+						<div style="opacity: .3;">ms</div>
+					</div>
+					<div style="display: flex;align-items: center;flex:1;justify-content:center">
+						<div style="opacity: .3;">丢包</div>
+						<div style="margin:0px 4px">{{data.lost}}</div>
+						<div style="opacity: .3;">%</div>
+					</div>
+					<div class="line"></div>
+					<div class="line" style="left: 70%;"></div>
 				</div>
 			</div>
-			<div class="item">
-				<div style="display: flex;align-items: center;width:2.5rem">
-					<img src="../assets/cesu_icon1.png" class="icon">
-					<div>在线直播</div>
-				</div>
-				<div class="loading">
-					<div class="inLoading" :style="{width:upLoading+'%'}"></div>
-				</div>
-				<div style="display: flex;align-items: center;">
-					<div>{{zhibo}}</div>
-					<img src="../assets/arrow.png" class="arrow">
-				</div>
+			<div style="text-align: center;">
+				<div style="font-size: 10px;opacity: 0.5;">再测一次，结果会更准确哦~</div>
+				<div class="button" @click="again()">再测一次</div>
 			</div>
-			<div class="item">
-				<div style="display: flex;align-items: center;width:2.5rem">
-					<img src="../assets/cesu_icon6.png" class="icon">
-					<div>高清视频</div>
-				</div>
-				<div class="loading">
-					<div class="inLoading" :style="{width:downLoading+'%'}"></div>
-				</div>
-				<div style="display: flex;align-items: center;">
-					<div>{{video}}</div>
-					<img src="../assets/arrow.png" class="arrow">
-				</div>
-			</div>
-			<div class="item">
-				<div style="display: flex;align-items: center;width:2.5rem">
-					<img src="../assets/cesu_icon7.png" class="icon">
-					<div>抢红包</div>
-				</div> 
-				<div class="loading">
+			<div style="font-size: 13px;color:rgba(255,255,255,.5);text-align: center;">您的网速相当于<span style="font-size: 16px;color:#fff;">{{level}}</span>宽带</div>
+			<a :href="ad.url" style="display: block;color:#00dbff;font-size: 0.416rem;opacity: .5;text-align: center;margin:0.4rem auto;">{{ad.desc}}</a>
+			<div class="list" style="width: 92%;margin:0 auto;">
+				<router-link to="/speed?type=0"  class="item">
+					<div style="display: flex;align-items: center;width:2.5rem">
+						<img src="../assets/cesu_icon0.png" class="icon">
+						<div>大型游戏</div>
+					</div>
+					<div class="loading">
+						<div class="inLoading" :style="{width:downLoading+'%'}"></div>
+					</div>
+					<div style="display: flex;align-items: center;">
+						<div>{{game}}</div>
+						<img src="../assets/arrow.png" class="arrow">
+					</div>
+				</router-link>
+				<router-link to="/speed?type=1" class="item">
+					<div style="display: flex;align-items: center;width:2.5rem">
+						<img src="../assets/cesu_icon1.png" class="icon">
+						<div>在线直播</div>
+					</div>
+					<div class="loading">
 						<div class="inLoading" :style="{width:upLoading+'%'}"></div>
-				</div> 
-				<div style="display: flex;align-items: center;">
-					<div>{{hongbao}}</div>
-					<img src="../assets/arrow.png" class="arrow">
-				</div>
+					</div>
+					<div style="display: flex;align-items: center;">
+						<div>{{zhibo}}</div>
+						<img src="../assets/arrow.png" class="arrow">
+					</div>
+				</router-link>
+				<router-link to="/speed?type=2" class="item">
+					<div style="display: flex;align-items: center;width:2.5rem">
+						<img src="../assets/cesu_icon2.png" class="icon">
+						<div>高清视频</div>
+					</div>
+					<div class="loading">
+						<div class="inLoading" :style="{width:downLoading+'%'}"></div>
+					</div>
+					<div style="display: flex;align-items: center;">
+						<div>{{video}}</div>
+						<img src="../assets/arrow.png" class="arrow">
+					</div>
+				</router-link>
+				<router-link to="/speed?type=3" class="item">
+					<div style="display: flex;align-items: center;width:2.5rem">
+						<img src="../assets/cesu_icon3.png" class="icon">
+						<div>抢红包</div>
+					</div>
+					<div class="loading">
+						<div class="inLoading" :style="{width:upLoading+'%'}"></div>
+					</div>
+					<div style="display: flex;align-items: center;">
+						<div>{{hongbao}}</div>
+						<img src="../assets/arrow.png" class="arrow">
+					</div>
+				</router-link>
 			</div>
 		</div>
 	</div>
@@ -122,7 +131,7 @@
 				video: "",
 				downLoading: "",
 				upLoading: "",
-				ad:""
+				ad: ""
 			}
 		},
 		created() {
@@ -180,16 +189,16 @@
 				this.game = "流畅"
 				this.video = "蓝光"
 			}
-			this.$axios.get("../../doc/getAdv.htm?appId=17&posId=121").then(res=>{
-						
-							 let data=res.data.data 
-							 this.ad=data[Math.floor((Math.random()*data.length))] 
-			})
 
 		},
 		methods: {
 			back() {
 				this.$router.back()
+			},
+			again(){
+				this.$router.push({
+					path: '/'
+				})
 			}
 		}
 	}
@@ -198,14 +207,19 @@
 <style scoped="scoped" lang="less">
 	.head {
 		font-size: 0.472rem;
-		display: flex;
 		align-items: center;
 		line-height: 1.2rem;
+		position: relative;
+		text-align: center;
 
 		img {
+			position: absolute;
 			width: 0.25rem;
 			display: block;
+			margin: auto;
 			margin-right: 0.25rem;
+			top: 0;
+			bottom: 0;
 		}
 	}
 
@@ -267,7 +281,7 @@
 			display: flex;
 			align-items: center;
 			justify-content: space-between;
-			font-size: 0.417rem;
+			font-size: 14px;
 			line-height: 1.44rem;
 			border-top: 1px solid rgba(255, 255, 255, .1);
 
@@ -290,7 +304,7 @@
 					width: 0px;
 					height: 100%;
 					border-radius: 20px;
-					background: rgb(0, 219, 255);
+					background: #09c269;
 				}
 			}
 
@@ -306,11 +320,24 @@
 	.list .item:last-child {
 		border-bottom: 1px solid rgba(255, 255, 255, .1);
 	}
-	 a{
-	 	text-decoration: none; 
-	 }
-	 a:active{ 
-	      -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-	 
-	 }
+
+	a {
+		text-decoration: none;
+		color:#FFF;
+	}
+
+	a:active {
+		-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+
+	}
+	.button{ 
+  background:linear-gradient( to right, rgb(98,223,148), rgb(81,232,211) );
+  margin:10px auto;
+  width: 290px;
+  line-height: 40px; 
+  color:#000;
+  font-size: 16px;
+  border-radius: 20px;
+}
+
 </style>

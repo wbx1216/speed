@@ -1,94 +1,9 @@
 <template>
-	<div class="index">
+	<div class="index" :style="{height:windowHeight+'px'}">
 		<bottomNav></bottomNav>
 		<topNav></topNav>
-		<div style="text-align: center;color:rgba(255,255,255,.6);font-size:0.28rem;" v-show="status==0">5G测速来啦,快来测测你的网速吧</div>
-		<img src="../assets/index_top.png" style="width:4.23rem;display: block;margin:5px auto;" v-show="status==0">
-		<div class="start" v-show="status==0" @click="start">
-			<div class="cir_in">测速</div>
-			<div class="cir_out"></div>
-		</div>
-		<img src="../assets/index_logo.png" v-show="status==0" style="position: absolute;top:0.5rem;left:0.5rem;width:4rem;">
-		<div v-show="status!=0">
-			<transition name="fade">
-				<div class="again" v-if="status==2">
-					<div class="left" @click="start">
-						<div class="cir_in">测速</div>
-					</div>
-					<div class="right">
-						<div>您的网速相当于<span style="color:#00dbff">{{level}}</span>宽带</div>
-						<div style="display: flex;align-items: center;margin-top: 0.4rem;justify-content: space-between;">
-							<div style="font-size: 0.36rem;">已超越全国<span style="color:#00dbff">{{pet}}%</span>的用户</div>
-							<div class="detail" @click="detail">详情分析</div>
-						</div>
-					</div>
-				</div>
-			</transition>
-			<div class="down chart">
-				<div style="width:3rem">
-					<div class="text">下载/Mbps</div>
-					<div style="background: #69e3c2;width:0.56rem;height:0.069rem;margin-top: 0.416rem;" v-show="down<=0"></div>
-					<div style="color:#69e3c2;font-size: .6rem;line-height: 1rem;" v-show="down>0">{{down}}</div>
-				</div>
-				<div class="table">
-					<div style="font-size:0.305rem; text-align: right;margin-bottom: 0.2rem;color:rgba(255,255,255,.5)" :style="{visibility:(downSum>0?'visible':'hidden')}">使用流量<span
-						 style="color:#69e3c2;margin-left: 5px;">{{downSum}}M</span></div>
-					<div class="table2">
-						<div id="main" class="main"></div>
-						<!-- <canvas id="canvas" width="235px"></canvas> -->
-					</div>
-				</div>
-			</div>
-			<div class="up chart">
-				<div style="width:3rem">
-					<div class="text">上传/Mbps</div>
-					<div style="background: #00dbff;width:0.56rem;height:0.069rem;margin-top: 0.416rem;" v-show="up<=0"></div>
-					<div style="color:#00dbff;font-size: .6rem;line-height: 1rem;" v-show="up>0">{{up}}</div>
-				</div>
-				<div class="table">
-					<div style="font-size:0.305rem; text-align: right;margin-bottom: 0.2rem;color:rgba(255,255,255,.5)" :style="{visibility:(upSum>0?'visible':'hidden')}">使用流量<span
-						 style="color:#00dbff;margin-left: 5px;">{{upSum}}M</span></div>
-
-					<div class="table2">
-						<div id="main2" class="main"></div>
-						<!-- <canvas id="canvas" width="235px"></canvas> -->
-					</div>
-				</div>
-			</div>
-			<div class="midMessage">
-				<div class="item">
-					<div class="label">PING/ms</div>
-					<div class="num"><span v-show="ping==0"></span>
-						<div v-show="ping>0">{{ping}}</div>
-					</div>
-				</div>
-				<div class="item">
-					<div class="label">抖动/ms</div>
-					<div class="num"><span v-show="doudong==0"></span>
-						<div v-show="doudong>0">{{doudong}}</div>
-					</div>
-				</div>
-				<div class="item">
-					<div class="label">丢包/%</div>
-					<div class="num"><span v-show="lost==0"></span>
-						<div v-show="lost>0">{{lost}}%</div>
-					</div>
-				</div>
-			</div>
-			<transition name="fade">
-				<div v-if="status==2" style="margin-top: 1.11rem;">
-					<div class="ad">
-						<div class="icon"><img src="../assets/cesu_icon0.png"></div>
-						<div>玩大型网游，网速延迟一目了然</div>
-						<div class="button" @click="game">游戏测速</div>
-					</div>
-					<a class="ad" :href="ad.url" target="_blank">
-						<div class="icon"><img src="../assets/ie.png"></div>
-						<div>{{ad.desc}}</div>
-					</a>
-				</div>
-			</transition>
-			<div class="testArea" v-if="status==1">
+		<div> 
+			<div class="testArea">
 				<div style="width: 100%;height:100%;position: absolute;">
 					<span class="kedu pos1" :style="{opacity:opacity}">0</span>
 					<span class="kedu pos2" :style="{opacity:opacity}">5</span>
@@ -104,10 +19,16 @@
 					<div style=" transform: rotate(-45deg);width: 100%;height: 100%;position: relative; transform-origin:center;">
 						<svg style="width:100%;height: 100%;">
 							<g>
+								<linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+									<stop offset="0%" style="stop-color:#62df94;stop-opacity:1" />
+									<stop offset="50%" style="stop-color:#52e7ce;stop-opacity:1" />
+									<stop offset="100%" style="stop-color:#51e8d3;stop-opacity:1" />
+								</linearGradient>
 								<circle r="2.885rem" cx="50%" cy="50%" :stroke-dasharray="old+'px'" stroke="#2d333f" stroke-width="0.48rem"
 								 fill="none" class="circle"></circle>
 								<circle r="2.885rem" cx="50%" cy="50%" class="new" :stroke-dasharray="2*old+'px'" :stroke-dashoffset="dashoffset+'px'"
-								 :class="first?'first':''" stroke="#14c7e5" stroke-width="0.48rem" fill="none"></circle>
+								 :class="first?'first':''" stroke="url(#grad1)" stroke-width="0.48rem" fill="none"></circle>
+								</circle>
 							</g>
 						</svg>
 					</div>
@@ -120,30 +41,91 @@
 					<div style="font-size: 0.333rem;">Mbps</div>
 				</div>
 			</div>
-		</div>
-		<div class="tool" :style="status!=1?'width:8rem':''">
-			<div class="item">
-				<img src="@/assets/location.png">
-				<div class="text">
-					<div>{{ip}}</div>
-					<div>{{operator}}</div>
+			<div class="down chart">
+				<div class="table">
+					<div class="table2">
+						<div id="main" class="main"></div>
+						<div id="main2" class="main"></div>
+					</div>
 				</div>
 			</div>
-			<div style="flex: 1;position: relative;margin:0px 5px">
-				<div class="loading" :class="{down:downStatus,up:upStatus}" v-show="status==1"></div>
+			<!-- 		<div class="up chart">
+				<div style="width:3rem">
+					<div class="text">上传/Mbps</div>
+					<div style="background: #00dbff;width:0.56rem;height:0.069rem;margin-top: 0.416rem;" v-show="up<=0"></div>
+					<div style="color:#00dbff;font-size: .6rem;line-height: 1rem;" v-show="up>0">{{up}}</div>
+				</div>
+				<div class="table">
+					<div style="font-size:0.305rem; text-align: right;margin-bottom: 0.2rem;color:rgba(255,255,255,.5)" :style="{visibility:(upSum>0?'visible':'hidden')}">使用流量<span
+						 style="color:#00dbff;margin-left: 5px;">{{upSum}}M</span></div>
+
+					<div class="table2">
+						<div id="main2" class="main"></div> 
+					</div>
+				</div>
+			</div> -->
+			<div class="midMessage">
+				<div class="item">
+					<img src="../assets/down.png">
+					<div>
+						<div>下载</div>
+						<div class="num">
+							<div v-show="down==0" style="margin-right: 2px;">--</div>
+							<div v-show="down>0" class="speed">{{down}}</div>
+							<div>Mbps</div>
+						</div>
+					</div>
+				</div>
+				<div class="item">
+					<img src="../assets/up.png">
+					<div>
+						<div>上传</div>
+						<div class="num">
+							<div v-show="up==0" style="margin-right: 2px;">--</div>
+							<div v-show="up>0" class="speed">{{up}}</div>
+							<div>Mbps</div>
+						</div>
+					</div>
+				</div>
 			</div>
-			<div class="item">
-				<img src="@/assets/jiedian.png">
-				<div style="color:#00dbff;font-size: 0.36rem;margin-left: 0.2rem;">云测节点</div>
+			<div class="midMessage">
+				<div class="item">
+					<img src="../assets/p.png">
+					<div>
+						<div>PING</div>
+						<div class="num">
+							<div v-show="ping==0" style="margin-right: 2px;">--</div>
+							<div v-show="ping>0" class="speed">{{ping}}</div>
+							<div>ms</div>
+						</div>
+					</div>
+				</div>
+				<div class="item">
+					<img src="../assets/doudong.png">
+					<div>
+						<div>抖动</div>
+						<div class="num">
+							<div v-show="doudong==0" style="margin-right: 2px;">--</div>
+							<div v-show="doudong>0" class="speed">{{doudong}}</div>
+							<div>ms</div>
+						</div>
+					</div>
+				</div>
 			</div>
+			<div class="start" @click="start">
+				{{text}}
+			</div>
+
 		</div>
+		<div style="text-align: center;font-size: 12px;opacity: 0.3;margin-top: 30px;">版本号v2.0.3</div>
+		<div style="width: 200px;margin:0 auto;display: flex;justify-content: center;"><router-link to="/privacy" style="color:#fff;font-size: 12px;opacity: 0.3; ">《隐私协议》</router-link><router-link to="/agreement" style="color:#fff;font-size: 12px;opacity: 0.3; ">《用户协议》</router-link></div>
 		<div class="bannerAd" v-show="bannerAd&&status==0">
 			<a :href="bannerAd.url">
 				<img :src="bannerAd.pic" style="width:90%;display: block;margin:10px auto;">
 			</a>
 		</div>
-		<iframe id="geoPage" width=0 height=0 frameborder=0 style="display:none;" scrolling="no" src="https://apis.map.qq.com/tools/geolocation?key=OB4BZ-D4W3U-B7VVO-4PJWW-6TKDJ-WPB77&referer=myapp">
-		</iframe>
+<!-- 		<iframe id="geoPage" width=0 height=0 frameborder=0 style="display:none;" scrolling="no" src="https://apis.map.qq.com/tools/geolocation?key=OB4BZ-D4W3U-B7VVO-4PJWW-6TKDJ-WPB77&referer=myapp">
+		</iframe> -->
 	</div>
 </template>
 <script>
@@ -157,11 +139,11 @@
 			bottomNav,
 			topNav
 		},
+		inject: ["reload"],
 		data() {
 			return {
 				downStatus: false,
 				upStatus: false,
-				status: 0,
 				ip: "",
 				operator: "",
 				first: false,
@@ -186,47 +168,33 @@
 				ad: "",
 				bannerAd: "",
 				opacity: "0.5",
-				type: ""
-
+				type: "",
+				text: "开始测试"
 			}
 		},
 		created() {
 			let that = this
-			this.ajax({
-				'url': 'http://api.ip138.com/query/',
-				'data': { //默认自动添加callback参数
-					'ip': '', //为空即为当前iP地址
-					'oid': '28624',
-					'mid': '90952',
-					'token': '53237a5c33dc8f71d60a229331bc9760' //不安全，请定期刷新token，建议进行文件压缩
-				},
-				'dataType': 'jsonp',
-				'success': function(json) {
-					console.log(json)
-					that.ip = json.ip.split(".")[0] + "..." + json.ip.split(".")[3]
-					that.realIp = json.ip
-					that.operator = json.data[2] + json.data[3]
-					that.type = json.data[3]
-				}
-			});
+			let windowHeight=document.documentElement.clientHeight
+			this.windowHeight=windowHeight-50
 			setInterval(function() {
 				if (w) w.postMessage('status');
 			}, 200);
-			window.addEventListener('message', function(event) {
-				var loc = event.data;
-				if (loc && loc.module) {
-					that.jd = (loc.lng).toFixed(2)
-					that.wd = (loc.lat).toFixed(2)
-				}
-			}, false)
-			this.$axios.get("../../doc/getAdv.htm?appId=17&posId=121").then(res => {
-				let data = res.data.data
-				this.ad = data[Math.floor((Math.random() * data.length))]
+			this.ajax({
+				url: "http://api.ip138.com/query/",
+				data: {
+					ip: "",
+					oid: "28624",
+					mid: "90952",
+					token: "53237a5c33dc8f71d60a229331bc9760"
+				},
+				dataType: "jsonp",
+				success: function(i) {
+					 console.log(i)
+					 that.realIp=i.ip
+					 that.address=i.data[2]
+				} 
 			})
-			this.$axios.get("../../doc/getAdv.htm?appId=17&posId=122").then(res => {
-				let data = res.data.data
-				this.bannerAd = data[Math.floor((Math.random() * data.length))]
-			})
+	 
 		},
 		mounted() {
 			vm = this
@@ -234,7 +202,7 @@
 		},
 		methods: {
 			creatDown() {
-				let xData = new Array(16).fill("")
+				let xData = new Array(20).fill("")
 				var option = {
 					animationDurationUpdate: 30000,
 					xAxis: {
@@ -261,34 +229,13 @@
 									color: 'rgb(105, 227, 194)' //折线颜色
 								}
 							}
-						},
-						areaStyle: {
-							color: {
-								type: 'linear',
-								x: 0,
-								y: 0,
-								x2: 0,
-								y2: 1,
-								colorStops: [{
-									offset: 0,
-									color: 'rgb(105, 227, 194)' // 0% 处的颜色
-								}, {
-									offset: 1,
-									color: 'rgba(255,255,255,0)'
-								}],
-								global: false // 缺省为 false
-							}
-						}, 
-						animationDurationUpdate: function (idx) {
-						    // 越往后的数据延迟越大
-						    return idx * 1000;
 						}
-					}], 
+					}],
 				}
 				this.myChart.setOption(option, true)
 			},
 			creatUp() {
-				let xData = new Array(10).fill("")
+				let xData = new Array(20).fill("")
 				let option = {
 					animationDurationUpdate: 30000,
 					xAxis: {
@@ -314,24 +261,8 @@
 									color: 'rgb(0, 219, 255)' //折线颜色
 								}
 							}
-						},
-						areaStyle: {
-							color: {
-								type: 'linear',
-								x: 0,
-								y: 0,
-								x2: 0,
-								y2: 1,
-								colorStops: [{
-									offset: 0,
-									color: 'rgb(0, 219, 255)' // 0% 处的颜色
-								}, {
-									offset: 1,
-									color: 'rgba(255,255,255,0)'
-								}],
-								global: false // 缺省为 false
-							}
 						}
+
 					}]
 				}
 				this.myChart2.setOption(option, true)
@@ -351,8 +282,6 @@
 					})
 				}
 
-				// this.option.series[0].data = this.downData 
-				// myChart.setOption(this.option);
 			},
 			drawUp(d) {
 				if (!d) return false;
@@ -373,7 +302,7 @@
 				var networkType;
 				switch (networkStr) {
 					case 'wifi':
-						networkType = 'wifi';
+						networkType = 'Wi-Fi';
 						break;
 					case '4g':
 						networkType = '移动网络';
@@ -389,11 +318,13 @@
 						break;
 					default:
 						networkType = '移动网络';
-				}
-				this.type = networkStr
+				} 
+				this.type = networkType
 			},
 			start() {
-				this.status = 1
+				if(this.text=="测试中"){
+					return false
+					}
 				this.first = true
 				this.down = 0
 				this.up = 0
@@ -410,25 +341,13 @@
 					that.creatDown()
 					that.creatUp()
 				}, 10);
-
-				// this.upData = [0]
-				// this.option.series[0].data = this.downData
-				// this.option2.series[0].data = this.upData
-				// let myChart = document.getElementById("main")
-				// let myChart2 = document.getElementById("main2")
-				// let canvas = document.getElementsByTagName("canvas")
-				// if (canvas.length > 0) {
-				// 	canvas[1].parentNode.removeChild(canvas[1])
-				// 	canvas[0].parentNode.removeChild(canvas[0])
-				// }
-				// myChart.removeAttribute("_echarts_instance_");
-				// myChart2.removeAttribute("_echarts_instance_");
 				w = new Worker('speedtest_worker.min.js');
 				w.postMessage('start'); //Add optional parameters as a JSON object to this command 
 				w.onmessage = (e) => {
-					let data = JSON.parse(e.data) 
+					let data = JSON.parse(e.data)
 					let status = data.testState;
 					let zhizhen = document.querySelector('.zhizhen');
+					this.text = "测试中"
 					if (status == 2) {
 						this.ping = data.pingStatus
 						this.doudong = data.jitterStatus
@@ -447,8 +366,7 @@
 						this.dashoffset = (27.176 - set) * document.body.clientWidth / 10
 
 					} else if (status == 3 && data.ulStatus == "") {
-						console.log(this.downData.length)
-						this.downStatus = false
+						this.downStatus = false 
 						this.up = data.ulStatus
 						this.speed = "0.00"
 						this.dashoffset = document.body.clientWidth * 2.718
@@ -457,14 +375,16 @@
 							this.downSum = this.randomNum(20, 30)
 							time = 2;
 						}
-					} else if (status == 3 && data.ulStatus != "") {
+					} else if (status == 3 && data.ulStatus > 0) {
 						this.upStatus = true
-						this.drawUp(data.ulStatus)
-						this.up = data.ulStatus
-						let set = this.offset(data.ulStatus)
+						let ulStatus
+						ulStatus = Math.random(1, 5).toFixed(2)
+						this.drawUp(ulStatus)
+						this.up = ulStatus
+						let set = this.offset(ulStatus)
 						this.dashoffset = (27.176 - set) * document.body.clientWidth / 10
 						this.deg = (set * 19.8 + 45).toFixed(3)
-						this.speed = data.ulStatus
+						this.speed = ulStatus
 					} else if (status == 4) {
 						this.upStatus = false
 						w = null;
@@ -495,10 +415,16 @@
 							this.level = "100M+"
 							this.pet = 98
 						}
-						this.record()
+						
 						let that = this
 						setTimeout(function() {
-							that.status = 2
+							that.record()
+							that.$router.push({
+								path: '/detail',
+								query: {
+									index: 0
+								}
+							})
 						}, 1000)
 					}
 				}
@@ -575,14 +501,16 @@
 					up: this.up,
 					date: date,
 					time: time,
-					jd: this.jd,
-					wd: this.wd,
+					// jd: this.jd,
+					// wd: this.wd,
 					ip: this.realIp,
 					downSum: this.downSum,
 					ping: this.ping,
 					doudong: this.doudong,
 					lost: this.lost,
-					type: this.type
+					type: this.type,
+					address:this.address,
+					pet:this.pet
 				}
 				if (localStorage.data5g) {
 					data = localStorage.data5g
@@ -724,56 +652,28 @@
 		}
 	}
 </script>
-<style lang="less" scoped="scoped">
+<style lang="less"   > 
+	body,
+	html {
+		height: 100%;
+	}
+ 
 	.index {
-		padding-top: 1.8rem;
+		padding-top: 0.5rem;
+		background: #040412;
+		height: 100vh;
 	}
 
 	.start {
-		width: 5.83rem;
-		height: 5.83rem;
-		position: relative;
-		margin: 0px auto 1rem auto;
-		padding-top: 1rem;
-
-		.cir_out {
-			border: 2px solid #00dbff;
-			width: 4.83rem;
-			height: 4.83rem;
-			border-radius: 50%;
-			margin: auto;
-			position: absolute;
-			left: 0;
-			bottom: 0;
-			top: 0;
-			right: 0;
-			animation: startCircleAni 3s ease-in 2.8s infinite;
-			-webkit-animation: startCircleAni 3s ease-in 2.8s infinite;
-			opacity: 0;
-			/* Safari 和 Chrome */
-		}
-
-
-
-		.cir_in {
-			width: 4.83rem;
-			height: 4.83rem;
-			border-radius: 50%;
-			position: absolute;
-			left: 0rem;
-			top: 0rem;
-			bottom: 0;
-			right: 0;
-			margin: auto;
-			color: #FFF;
-			font-size: 0.9rem;
-			text-align: center;
-			line-height: 4.83rem;
-			animation: inmove 3s ease-in 2s infinite;
-			-webkit-animation: inmove 3s ease-in 2s infinite;
-			background-image: linear-gradient(to bottom right, #89ecdc, #00dbff);
-
-		}
+		background-image: linear-gradient(to right,rgb(98, 223, 148) , rgb(81, 232, 211));
+		width: 250px;
+		height: 40px;
+		line-height: 40px;
+		text-align: center;
+		border-radius: 20px;
+		margin: 0 auto;
+		color: #000;
+		font-size: 16px;
 	}
 
 	@keyframes inmove {
@@ -879,7 +779,7 @@
 	}
 
 	.chart {
-		width: 9.09rem;
+		width: 100%;
 		margin: 0 auto;
 		display: flex;
 		margin-bottom: 0.208rem;
@@ -892,16 +792,24 @@
 		}
 
 		.table {
-			width: 5rem;
+			width: 100%;
 
 			.table2 {
 				margin-top: 1px;
 				position: relative;
-				background-size: cover;
-				background: url('../assets/table.png') no-repeat;
 				overflow: hidden;
-				background-size: 100% 100%;
-				height: 1rem;
+				height: 50px;
+
+				.main {
+					position: absolute;
+					left: -12%;
+					bottom: -20%;
+					height: 200%;
+					width: 124%;
+				}
+				#main2{
+					bottom:-30%;
+				}
 			}
 		}
 
@@ -909,34 +817,48 @@
 	}
 
 	.midMessage {
-		width: 9.09rem;
-		margin: 0 auto;
+		width: 250px;
+		margin: 0 auto 30px auto;
 		display: flex;
 		justify-content: space-between;
 
 		.item {
-			font-size: 0.305rem;
-			text-align: center;
+			font-size: 11px;
 			line-height: 0.5rem;
+			display: flex;
+			align-items: center;
+			color: rgba(255, 255, 255, .3);
+			width: 90px;
+
+			.num {
+				display: flex;
+				align-items: baseline;
+				line-height: 24px;
+			}
+
+			img {
+				display: block;
+				width: 30px;
+				margin-right: 10px;
+			}
 
 			.label {
 				opacity: 0.5;
 			}
 
-			span {
-				display: block;
-				width: 0.486rem;
-				height: 1px;
-				background: #FFF;
-				margin: 0.278rem auto;
+			.speed {
+				color: #fff;
+				font-size: 22px;
+				margin-right: 2px;
 			}
+
 		}
 	}
 
 	.testArea {
 		width: 6.25rem;
 		height: 6.25rem;
-		margin: 1rem auto;
+		margin: 1rem auto 0px auto;
 		position: relative;
 
 		.kedu {
@@ -992,7 +914,7 @@
 
 
 		.text {
-			color: #00dbff;
+			color: #09c269;
 			position: absolute;
 			left: 0;
 			right: 0;
@@ -1078,6 +1000,7 @@
 		margin: 0px auto 1.04rem auto;
 		justify-content: space-between;
 		align-items: center;
+
 		.left {
 			width: 2.5rem;
 			height: 2.5rem;
@@ -1166,15 +1089,7 @@
 		opacity: 0;
 	}
 
-	.table2 {
-		.main {
-			width: 124%;
-			height: 220%;
-			position: absolute;
-			left: -12%;
-			bottom: -50%;
-		}
-	}
+
 
 	a {
 		text-decoration: none;

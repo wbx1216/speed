@@ -7,7 +7,8 @@ import record from '../views/record.vue'
 import detail from '../views/detail.vue'
 import ipSearch from '../views/ipSearch.vue'
 import pingTest from '../views/pingTest.vue'
-import test from '../views/test.vue'
+import privacy from '../views/privacy.vue'
+import agreement from '../views/agreement.vue'
 
 Vue.use(VueRouter)
 
@@ -51,9 +52,14 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/pingTest.vue')
   }, 
   {
-    path: '/test',
-    name: 'test', 
-    component: () => import(/* webpackChunkName: "about" */ '../views/test.vue')
+    path: '/privacy',
+    name: 'privacy', 
+    component: () => import(/* webpackChunkName: "about" */ '../views/privacy.vue')
+  }, 
+  {
+    path: '/agreement',
+    name: 'agreement', 
+    component: () => import(/* webpackChunkName: "about" */ '../views/agreement.vue')
   }
 ]
 

@@ -14,7 +14,7 @@
 				  ></circle>
 			</svg>
 			<svg class="svg2">
-				<circle :class="ready?'cir_out':''" r="2rem" cx="50%" cy="50%" stroke="#00dbff" stroke-width="2px" :stroke-dasharray="dashoffset+'px'"
+				<circle :class="ready?'cir_out':''" r="2rem" cx="50%" cy="50%" stroke="#09c26a" stroke-width="2px" :stroke-dasharray="dashoffset+'px'"
 				 :stroke-dashoffset="dashoffset+'px'" fill="none"></circle>
 			</svg>
 		</div>
@@ -221,7 +221,7 @@
 		.point {
 			width: 0.11rem;
 			height: 0.11rem;
-			background: #00dbff;
+			background: #09c26a;
 			border-radius: 50%;
 			position: absolute;
 			left: 0;
@@ -241,7 +241,7 @@
 			margin: auto;
 			top: 0;
 			bottom: 0;
-			background: linear-gradient(to right, #89ecdc, #00dbff);
+			background: linear-gradient(to right, #54e7c9, #62df94);
 			z-index: 10;
 			img {
 				width: 50%;
